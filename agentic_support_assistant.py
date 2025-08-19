@@ -9,6 +9,20 @@ import faiss
 
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
-# Memory for context persistence
 memory = ConversationBufferMemory()
+
+# ----- SUPERVISOR AGENT -----
+classification_prompt = PromptTemplate(
+    input_variables=["ticket"],
+    template="""
+    You are a supervisor agent. 
+    Classify the following ticket into one of: [Technical, Billing, General].
+    Ticket: {ticket}
+    Respond with just the category.
+    """
+)
+
+supervisor_chain = LLMChain(
+    llm=llm, prompt=classification_prompt, memory=memory
+)
 
