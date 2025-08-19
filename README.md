@@ -26,3 +26,12 @@ Worker → "Sorry to hear about your login issue. Please try resetting your pass
 - Add FAISS for RAG knowledge base
 - Connect to real ticketing system via API
 - Add multi-turn state monitoring
+
+## 🗂 Project Architecture
+
+```mermaid
+flowchart TD
+    A[User Ticket] --> B[Supervisor Agent]
+    B -->|Classifies as: Technical / Billing / General| C[Worker Agent]
+    C -->|Generates Response| D[Final Reply]
+    C -->|Optionally queries FAISS DB| E[(Knowledge Base)]
