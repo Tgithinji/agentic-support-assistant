@@ -35,3 +35,33 @@ flowchart TD
     B -->|Classifies as: Technical / Billing / General| C[Worker Agent]
     C -->|Generates Response| D[Final Reply]
     C -->|Optionally queries FAISS DB| E[(Knowledge Base)]
+
+## How It Works (Step by Step)
+
+Input Ticket
+
+A user submits a support ticket (e.g., “Why was I charged twice this month?”).
+
+Supervisor Agent
+
+Reads the ticket.
+
+Classifies it into one of three categories: Technical, Billing, or General.
+
+Passes both the ticket and the classification result to the Worker Agent.
+
+Worker Agent
+
+Based on the assigned category, it generates a helpful, context-aware reply.
+
+Example: For a billing issue, it creates a polite response suggesting a refund or payment check.
+
+Knowledge Base (Optional)
+
+If the system is extended with FAISS, the Worker Agent can query past support articles or FAQs.
+
+This improves accuracy for more complex, knowledge-driven responses.
+
+Final Reply
+
+The Worker Agent returns a clear, ready-to-send message back to the user.
